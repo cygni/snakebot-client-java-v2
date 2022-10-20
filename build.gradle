@@ -8,10 +8,6 @@ group = 'se.cygni'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
-springBoot {
-	mainClass = "se.cygni.snakebotclient.Main"
-}
-
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -26,6 +22,9 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework:spring-websocket:5.3.23'
+	implementation 'org.springframework:spring-messaging:5.3.23'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.4'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
