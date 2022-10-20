@@ -6,7 +6,7 @@ import lombok.Data;
 public class GameSettings {
 
     /** Maximum number of players in this game */
-    private int maxNoOfPlayers;
+    private int maxNoofPlayers;
 
     /** Maximum number of players in this game */
     private int startSnakeLength;
@@ -63,7 +63,7 @@ public class GameSettings {
     private int pointsPerNibble;
 
     /** Number of rounds a tail is protected after nibble */
-    private int noOfRoundsTailProtectedAfterNibble;
+    private int noofRoundsTailProtectedAfterNibble;
 
     /** The starting count for food */
     private int startFood;

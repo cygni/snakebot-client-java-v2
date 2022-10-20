@@ -1,5 +1,6 @@
 package se.cygni.snakebotclient.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.CloseStatus;
@@ -35,7 +36,11 @@ public class SnakebotConnection extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         logger.info("Client received: {}", message.getPayload());
-        snakebotClient.handleInputMessage(message.getPayload());
+        try {
+            snakebotClient.handleInputMessage(message.getPayload());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) {

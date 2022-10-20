@@ -1,12 +1,12 @@
-package se.cygni.snakebotclient.client;
+package se.cygni.snakebotclient.messages;
 
 import lombok.Data;
-import se.cygni.snakebotclient.messages.SnakebotMessage;
+import se.cygni.snakebotclient.utils.enums.MessageType;
 
 @Data
 public class ClientInfoMessage extends SnakebotMessage {
 
-    private String type = "se.cygni.snake.api.request.ClientInfo";
+    private MessageType type = MessageType.CLIENT_INFO;
     private String clientVersion;
     private String clientLanguage = "Java";
     private String languageVersion = System.getProperty("java.version");
