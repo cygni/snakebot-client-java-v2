@@ -7,19 +7,18 @@ import se.cygni.snakebotclient.snakepit.SnakeStrategy;
 
 import java.io.IOException;
 
-public class SnakebotClientService {
+public class SnakebotClient {
 
     private final GameSettings gameSettings;
     private final SnakeStrategy snake;
     private final SnakebotCommunicationHandler communicationHandler;
 
-    public SnakebotClientService(SnakeStrategy snake, String uri, GameSettings gameSettings) {
+    public SnakebotClient(SnakeStrategy snake, String uri, GameSettings gameSettings) {
         this.snake = snake;
         this.gameSettings = gameSettings;
 
         this.communicationHandler = new SnakebotCommunicationHandler(this, uri);
     }
-
 
     public void registerPlayer() throws SnakebotException {
         RegisterPlayerRequest request = new RegisterPlayerRequest("temporary", this.gameSettings);

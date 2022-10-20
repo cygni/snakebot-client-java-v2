@@ -15,7 +15,7 @@ public class SnakebotCommunicationHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(SnakebotCommunicationHandler.class.getName());
 
-    public SnakebotCommunicationHandler(SnakebotClientService service, String uri) {
+    public SnakebotCommunicationHandler(SnakebotClient service, String uri) {
         snakebotConnection = new SnakebotConnection(service);
 
         WebSocketConnectionManager connectionManager = new WebSocketConnectionManager(

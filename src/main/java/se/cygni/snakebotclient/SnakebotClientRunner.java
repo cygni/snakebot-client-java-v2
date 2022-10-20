@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import se.cygni.snakebotclient.client.SnakebotClientService;
+import se.cygni.snakebotclient.client.SnakebotClient;
 import se.cygni.snakebotclient.model.GameSettings;
 import se.cygni.snakebotclient.snakepit.Slippy;
 import se.cygni.snakebotclient.snakepit.SnakeStrategy;
@@ -28,7 +28,9 @@ public class SnakebotClientRunner implements ApplicationRunner {
         // get snake implementation from snake name
         SnakeStrategy snake;
         switch (snakeChoice) {
-            case "mysnake": snake = new Slippy();
+            case "mysnake":
+                snake = new Slippy();
+                break;
             default:
                 snake = new Slippy();
         }
@@ -49,8 +51,7 @@ public class SnakebotClientRunner implements ApplicationRunner {
             uri += conf.getVenue();
         }
 
-        this.snakebotService = new SnakebotClientService(snake, uri, new GameSettings());
-
+        new SnakebotClient(snake, uri, new GameSettings()); //TODO: SnakebotClient.run() ?
 
     }
 
