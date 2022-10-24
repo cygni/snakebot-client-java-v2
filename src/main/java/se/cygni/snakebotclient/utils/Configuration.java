@@ -4,8 +4,7 @@ import lombok.Data;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Component;
 import se.cygni.snakebotclient.snakepit.Slippy;
-import se.cygni.snakebotclient.snakepit.SnakeStrategy;
-import se.cygni.snakebotclient.utils.enums.GameMode;
+import se.cygni.snakebotclient.model.SnakeStrategy;
 
 
 @Component

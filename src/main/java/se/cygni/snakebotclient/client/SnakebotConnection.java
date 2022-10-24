@@ -14,7 +14,7 @@ import java.io.IOException;
 public class SnakebotConnection extends TextWebSocketHandler {
 
     private final SnakebotClient snakebotClient;
-    WebSocketSession session;
+    private WebSocketSession session;
 
     private static Logger logger = LoggerFactory.getLogger(SnakebotConnection.class.getName());
 
@@ -35,7 +35,6 @@ public class SnakebotConnection extends TextWebSocketHandler {
     }
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
-        logger.info("Client received: {}", message.getPayload());
         try {
             snakebotClient.handleInputMessage(message.getPayload());
         } catch (JsonProcessingException e) {

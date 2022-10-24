@@ -2,11 +2,14 @@ package se.cygni.snakebotclient.model;
 
 import lombok.Data;
 
+import java.util.List;
+import java.util.UUID;
+
 @Data
 public class SnakeInfo {
-    private String id;
+    private UUID id;
     private String name;
     private int points;
-    private int[] positions; // ?
-    private int tailProtectionDuration;
+    private List<Integer> positions;
+    private int tailProtectedForGameTicks;
 }

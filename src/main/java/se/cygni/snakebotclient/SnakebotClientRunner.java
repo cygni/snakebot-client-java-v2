@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import se.cygni.snakebotclient.client.SnakebotClient;
 import se.cygni.snakebotclient.model.GameSettings;
 import se.cygni.snakebotclient.snakepit.Slippy;
-import se.cygni.snakebotclient.snakepit.SnakeStrategy;
+import se.cygni.snakebotclient.model.SnakeStrategy;
 import se.cygni.snakebotclient.utils.Configuration;
-import se.cygni.snakebotclient.utils.enums.GameMode;
+import se.cygni.snakebotclient.model.enums.GameMode;
 
 
 @Component

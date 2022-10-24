@@ -3,7 +3,7 @@ package se.cygni.snakebotclient.messages.request;
 import lombok.Data;
 import se.cygni.snakebotclient.messages.SnakebotMessage;
 import se.cygni.snakebotclient.model.GameSettings;
-import se.cygni.snakebotclient.utils.enums.MessageType;
+import se.cygni.snakebotclient.messages.MessageType;
 
 @Data
 public class RegisterPlayerRequest extends SnakebotMessage {

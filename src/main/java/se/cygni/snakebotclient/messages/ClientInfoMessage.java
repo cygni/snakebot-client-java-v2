@@ -1,7 +1,6 @@
 package se.cygni.snakebotclient.messages;
 
 import lombok.Data;
-import se.cygni.snakebotclient.utils.enums.MessageType;
 
 @Data
 public class ClientInfoMessage extends SnakebotMessage {

@@ -1,4 +1,4 @@
-package se.cygni.snakebotclient.utils.enums;
+package se.cygni.snakebotclient.model.enums;
 
 public enum GameMode {
     TRAINING, TOURNAMENT, ARENA

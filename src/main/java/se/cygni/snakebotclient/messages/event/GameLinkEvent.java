@@ -1,9 +1,9 @@
-package se.cygni.snakebotclient.messages;
+package se.cygni.snakebotclient.messages.event;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Data;
-import se.cygni.snakebotclient.messages.response.PlayerRegisteredResponse;
-import se.cygni.snakebotclient.utils.enums.MessageType;
+import se.cygni.snakebotclient.messages.SnakebotMessage;
+import se.cygni.snakebotclient.messages.MessageType;
 
 import java.util.UUID;
 

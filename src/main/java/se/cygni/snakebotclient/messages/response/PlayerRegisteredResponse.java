@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Data;
 import se.cygni.snakebotclient.messages.SnakebotMessage;
 import se.cygni.snakebotclient.model.GameSettings;
-import se.cygni.snakebotclient.utils.enums.GameMode;
-import se.cygni.snakebotclient.utils.enums.MessageType;
+import se.cygni.snakebotclient.model.enums.GameMode;
+import se.cygni.snakebotclient.messages.MessageType;
 
 import java.util.UUID;
 

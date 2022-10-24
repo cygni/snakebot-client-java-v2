@@ -1,8 +1,6 @@
-package se.cygni.snakebotclient.utils.enums;
+package se.cygni.snakebotclient.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.Data;
 
 public enum MessageType {
     // Exceptions
