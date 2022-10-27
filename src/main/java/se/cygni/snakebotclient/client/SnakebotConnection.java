@@ -13,41 +13,36 @@ import java.io.IOException;
 
 public class SnakebotConnection extends TextWebSocketHandler {
 
-    private final SnakebotClient snakebotClient;
+    private final SnakebotService snakebotService;
     private WebSocketSession session;
 
     private static Logger logger = LoggerFactory.getLogger(SnakebotConnection.class.getName());
 
-    public SnakebotConnection(SnakebotClient service) {
-        this.snakebotClient = service;
+    public SnakebotConnection(SnakebotService service) {
+        this.snakebotService = service;
     }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws SnakebotException {
-        logger.info("Connection established successfully: {}", session);
+        logger.debug("Connection established successfully: {}", session);
         this.session = session;
-        snakebotClient.connectionEstablished();
+        snakebotService.connectionEstablished();
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-        logger.info("Client connection closed: {}", status);
+        logger.debug("Client connection closed: {}", status);
     }
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message) {
-        try {
-            snakebotClient.handleInputMessage(message.getPayload());
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+    public void handleTextMessage(WebSocketSession session, TextMessage message) throws JsonProcessingException {
+        snakebotService.handleInputMessage(message.getPayload());
     }
     @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) {
-        logger.info("Client transport error: {}", exception.getMessage());
+        logger.debug("Client transport error: {}", exception.getMessage());
     }
 
     public void sendMessage(String message) throws IOException {
-        logger.info("Sending message: {}", message);
         this.session.sendMessage(new TextMessage(message));
     }
 }

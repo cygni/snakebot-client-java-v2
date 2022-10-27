@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import se.cygni.snakebotclient.client.SnakebotClient;
+import se.cygni.snakebotclient.client.SnakebotService;
 import se.cygni.snakebotclient.model.GameSettings;
 import se.cygni.snakebotclient.snakepit.Slippy;
 import se.cygni.snakebotclient.model.SnakeStrategy;
@@ -51,7 +51,7 @@ public class SnakebotClientRunner implements ApplicationRunner {
             uri += conf.getVenue();
         }
 
-        new SnakebotClient(snake, uri, new GameSettings()); //TODO: SnakebotClient.run() ?
+        new SnakebotService(snake, uri, new GameSettings()); //TODO: SnakebotClient.run() ?
 
     }
 

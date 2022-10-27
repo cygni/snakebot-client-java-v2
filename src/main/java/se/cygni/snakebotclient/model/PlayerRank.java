@@ -11,4 +11,10 @@ public class PlayerRank {
     private int rank;
     private int points;
     private boolean alive;
+
+
+    @Override
+    public String toString() {
+        return String.format("Player %s achieved rank %d with %d points", playerName, rank, points);
+    }
 }

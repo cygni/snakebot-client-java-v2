@@ -1,6 +1,7 @@
 package se.cygni.snakebotclient.model;
 
 import lombok.Data;
+import se.cygni.snakebotclient.messages.event.MapUpdateEvent;
 import se.cygni.snakebotclient.model.enums.TileType;
 
 import java.util.HashMap;
@@ -14,10 +15,8 @@ public class GameState {
     private int height;
     private Map<UUID, Snake> snakes = new HashMap<>();
     private Map<Integer, TileType> tiles = new HashMap<>();
-    private GameSettings gameSettings;
-    private int gameTick;
 
-    public GameState(GameMap map, UUID receivingPlayerId, int gameTick, GameSettings gameSettings) {
+    public GameState(GameMap map, UUID receivingPlayerId) {
         map.getFoodPositions().forEach(p -> tiles.put(p, TileType.FOOD));
         map.getObstaclePositions().forEach(p -> tiles.put(p, TileType.OBSTACLE));
         map.getSnakeInfos().forEach(si -> {
@@ -31,6 +30,14 @@ public class GameState {
 
     }
 
+    public static GameState fromMapUpdateEvent(MapUpdateEvent event) {
+        return new GameState(event.getMap(), event.getReceivingPlayerId());
+    }
+
+    /**
+     * Gets your snake
+     * @return the Snake object belonging to you
+     */
     public Snake getPlayerSnake() {
         return this.getSnakes().get(this.playerId);
     }

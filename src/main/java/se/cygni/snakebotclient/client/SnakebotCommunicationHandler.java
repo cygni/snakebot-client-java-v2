@@ -9,14 +9,10 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import java.io.IOException;
 
 public class SnakebotCommunicationHandler {
-
     private final SnakebotConnection snakebotConnection;
 
-
-    private static final Logger logger = LoggerFactory.getLogger(SnakebotCommunicationHandler.class.getName());
-
-    public SnakebotCommunicationHandler(SnakebotClient service, String uri) {
-        snakebotConnection = new SnakebotConnection(service);
+    public SnakebotCommunicationHandler(SnakebotService client, String uri) {
+        snakebotConnection = new SnakebotConnection(client);
 
         WebSocketConnectionManager connectionManager = new WebSocketConnectionManager(
                 new StandardWebSocketClient(),
@@ -30,7 +26,8 @@ public class SnakebotCommunicationHandler {
         try {
             snakebotConnection.sendMessage(message);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Exception on: " + message, e);
         }
     }
+
 }

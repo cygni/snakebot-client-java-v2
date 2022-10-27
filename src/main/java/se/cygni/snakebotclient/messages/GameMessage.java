@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
 @Data
-public class SnakebotMessage {
+public abstract class GameMessage {
     private MessageType type;
     protected static final ObjectMapper mapper = new ObjectMapper();
 
