@@ -1,0 +1,8 @@
+server.port: 8082
+
+snakebot:
+  name: insertYourName
+  venue: training # insert 'training', arena code or 'tournament'
+  host: ws://localhost:8080/ # to use this start the docker-compose
+    # host: ws://snake.cygni.se/
+  snake-choice: slippy # use mysnake for MySnake implementation, defaults to slippy
