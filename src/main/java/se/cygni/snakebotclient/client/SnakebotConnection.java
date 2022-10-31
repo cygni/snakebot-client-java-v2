@@ -13,20 +13,20 @@ import java.io.IOException;
 
 public class SnakebotConnection extends TextWebSocketHandler {
 
-    private final SnakebotService snakebotService;
+    private final Snakebot snakebot;
     private WebSocketSession session;
 
     private static Logger logger = LoggerFactory.getLogger(SnakebotConnection.class.getName());
 
-    public SnakebotConnection(SnakebotService service) {
-        this.snakebotService = service;
+    public SnakebotConnection(Snakebot service) {
+        this.snakebot = service;
     }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws SnakebotException {
         logger.debug("Connection established successfully: {}", session);
         this.session = session;
-        snakebotService.connectionEstablished();
+        snakebot.connectionEstablished();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class SnakebotConnection extends TextWebSocketHandler {
     }
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws JsonProcessingException {
-        snakebotService.handleInputMessage(message.getPayload());
+        snakebot.handleInputMessage(message.getPayload());
     }
     @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) {
@@ -43,6 +43,7 @@ public class SnakebotConnection extends TextWebSocketHandler {
     }
 
     public void sendMessage(String message) throws IOException {
+
         this.session.sendMessage(new TextMessage(message));
     }
 }

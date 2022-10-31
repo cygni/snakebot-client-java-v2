@@ -1,14 +1,16 @@
 package se.cygni.snakebotclient.messages.event;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import se.cygni.snakebotclient.messages.GameMessage;
 import se.cygni.snakebotclient.model.GameMap;
 import se.cygni.snakebotclient.messages.MessageType;
 
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 public class GameEndedEvent extends GameMessage {
     private MessageType type = MessageType.GAME_ENDED;
     private UUID playerWinnerId;

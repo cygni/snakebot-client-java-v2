@@ -1,25 +1,18 @@
 package se.cygni.snakebotclient.client;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.client.WebSocketConnectionManager;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 
 import java.io.IOException;
 
-public class SnakebotCommunicationHandler {
+public class SnakebotCommunicationHandler implements Runnable{
     private final SnakebotConnection snakebotConnection;
+    private final String uri;
 
-    public SnakebotCommunicationHandler(SnakebotService client, String uri) {
+    public SnakebotCommunicationHandler(Snakebot client, String uri) {
         snakebotConnection = new SnakebotConnection(client);
-
-        WebSocketConnectionManager connectionManager = new WebSocketConnectionManager(
-                new StandardWebSocketClient(),
-                snakebotConnection, uri);
-        WebSocketHttpHeaders handshakeHeaders = new WebSocketHttpHeaders();
-        connectionManager.setHeaders(handshakeHeaders);
-        connectionManager.start();
+        this.uri = uri;
     }
 
     public void sendMessage(String message) {
@@ -30,4 +23,13 @@ public class SnakebotCommunicationHandler {
         }
     }
 
+    @Override
+    public void run() {
+        WebSocketConnectionManager connectionManager = new WebSocketConnectionManager(
+                new StandardWebSocketClient(),
+                snakebotConnection, this.uri);
+        WebSocketHttpHeaders handshakeHeaders = new WebSocketHttpHeaders();
+        connectionManager.setHeaders(handshakeHeaders);
+        connectionManager.start();
+    }
 }

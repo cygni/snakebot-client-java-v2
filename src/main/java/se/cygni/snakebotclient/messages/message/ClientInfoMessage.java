@@ -1,10 +1,10 @@
-package se.cygni.snakebotclient.messages.message;
-
-import lombok.Data;
+package se.cygni.snakebotclient.messages.message;import lombok.Getter;
+import lombok.Setter;
 import se.cygni.snakebotclient.messages.GameMessage;
 import se.cygni.snakebotclient.messages.MessageType;
 
-@Data
+@Getter
+@Setter
 public class ClientInfoMessage extends GameMessage {
 
     private MessageType type = MessageType.CLIENT_INFO;

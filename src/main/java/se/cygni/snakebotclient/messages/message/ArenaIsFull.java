@@ -10,14 +10,13 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class InvalidMessage extends GameMessage {
-    private MessageType type = MessageType.INVALID_MESSAGE;
-    private String errorMessage;
-    private String receivedMessage;
+public class ArenaIsFull extends GameMessage {
+    private MessageType type = MessageType.ARENA_IS_FULL;
+    private int playersConnected;
     private UUID receivingPlayerId;
     private long timestamp;
 
-    public static InvalidMessage fromJson(String message) throws JsonProcessingException {
-        return mapper.readValue(message, InvalidMessage.class);
+    public static ArenaIsFull fromJson(String message) throws JsonProcessingException {
+        return mapper.readValue(message, ArenaIsFull.class);
     }
 }

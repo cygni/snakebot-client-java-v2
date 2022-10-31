@@ -1,11 +1,13 @@
 package se.cygni.snakebotclient.messages.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import se.cygni.snakebotclient.messages.GameMessage;
-import se.cygni.snakebotclient.model.GameSettings;
 import se.cygni.snakebotclient.messages.MessageType;
+import se.cygni.snakebotclient.model.GameSettings;
 
-@Data
+@Getter
+@Setter
 public class RegisterPlayerRequest extends GameMessage {
     private MessageType type = MessageType.REGISTER_PLAYER;
     private String playerName;

@@ -72,10 +72,8 @@ public class GameSettings {
     private int startObstacles = 5;
 
 
-    public static GameSettings defaultTraining() {
+    public static GameSettings customTraining() {
         GameSettings training = new GameSettings();
-        // TODO add for custom settings
-        training.timeInMsPerTick = 250;
         return training;
     }
 }

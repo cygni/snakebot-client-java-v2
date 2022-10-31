@@ -1,6 +1,7 @@
 package se.cygni.snakebotclient.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import se.cygni.snakebotclient.messages.event.MapUpdateEvent;
 import se.cygni.snakebotclient.model.enums.TileType;
 
@@ -8,11 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 public class GameState {
     private UUID playerId;
     private int width;
     private int height;
+
     private Map<UUID, Snake> snakes = new HashMap<>();
     private Map<Integer, TileType> tiles = new HashMap<>();
 
