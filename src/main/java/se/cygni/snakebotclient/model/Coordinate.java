@@ -28,7 +28,8 @@ public class Coordinate extends Point {
      * @return True if this coordinate is within the square.
      */
     public boolean isWithinSquare(Coordinate topLeftCorner, Coordinate bottomRightCorner) {
-        return x >= topLeftCorner.x && x <= bottomRightCorner.x && y >= topLeftCorner.y && y <= bottomRightCorner.y;
+        return this.x >= topLeftCorner.x && this.x <= bottomRightCorner.x
+                && this.y <= topLeftCorner.y && this.y >= bottomRightCorner.y;
     }
 
     /**
@@ -43,14 +44,14 @@ public class Coordinate extends Point {
 
     /**
      * Calculates the euclidian distance from this point to another point.
-     * Note that eculidan distance will walk diagonally.
+     * Note that euclidan distance will walk diagonally.
      * @param other Goal coordinate.
      * @return Distance in map units.
      */
     public double getEuclidianDistance(Coordinate other) {
         int xDiff = x - other.x;
         int yDiff = y - other.y;
-        return Math.sqrt((xDiff) * (xDiff) + (yDiff) * (yDiff));
+        return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
     }
 
     /**
@@ -62,11 +63,8 @@ public class Coordinate extends Point {
     public int getManhattanDistance(Coordinate other) {
         int xDiff = x - other.x;
         int yDiff = y - other.y;
-        return (xDiff * xDiff) + (yDiff * yDiff);
+        return Math.abs(xDiff) + Math.abs(yDiff);
     }
-
-    // TODO vector distance ?
-
 
     /**
      * Calculates this coordinate's position in the flattened
@@ -75,13 +73,17 @@ public class Coordinate extends Point {
      * @param mapHeight The height of the map.
      * @return Position in the flattened array.
      */
-    public int toPosition(int mapWidth, int mapHeight) {
+    public int toArrayPosition(int mapWidth, int mapHeight) {
         if (this.isOutOfBounds(mapWidth, mapHeight)) {
             throw new IllegalArgumentException("The coordinate must be within the bounds in order to convert to position");
         }
         return x + y * mapWidth;
     }
 
+    /**
+     * Calculates the direction from this point to the neighboring point.
+     * @param other a neighboring point
+     */
    public Direction getDirection(Coordinate other) {
         int deltaX = this.x - other.x;
         int deltaY = this.y - other.y;
@@ -97,8 +99,8 @@ public class Coordinate extends Point {
     }
 
     /**
-     * @param deltaX amount to add to x-axis. TODO Positive values represent right or down. Negative values represent left or up.
-     * @param deltaY amount to add to y-axis. Positive values represent right or down. Negative values represent left or up.
+     * @param deltaX amount to add to x-axis. Positive is right. Negative is left.
+     * @param deltaY amount to add to y-axis. Positive is down. Negative is up.
      * @return A new coordinate that is moved by the deltaX and deltaY.
      */
     public Coordinate translateByDelta(int deltaX, int deltaY) {
@@ -117,8 +119,6 @@ public class Coordinate extends Point {
             case DOWN -> new Coordinate(x, y + 1);
         };
     }
-
-
 
 }
 

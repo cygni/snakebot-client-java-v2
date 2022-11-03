@@ -52,7 +52,7 @@ public class GameState {
     public TileType getTileType(Coordinate coordinate) {
         if (coordinate.isOutOfBounds(this.width, this.height)) return TileType.OBSTACLE;
 
-        int position = coordinate.toPosition(this.width, this.height);
+        int position = coordinate.toArrayPosition(this.width, this.height);
         TileType type = this.tiles.get(position);
         if (type == null) return TileType.EMPTY;
         return type;
