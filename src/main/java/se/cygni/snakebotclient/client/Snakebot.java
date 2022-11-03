@@ -31,6 +31,7 @@ public class Snakebot {
     private final SnakeStrategy snake;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final SnakebotCommunicationHandler communicationHandler;
 
     private UUID playerId;
@@ -39,10 +40,15 @@ public class Snakebot {
 
     private static final Logger logger = LoggerFactory.getLogger(Snakebot.class.getName());
 
+    // Expected time buffer required to respond within the time limit
+    private static final int EXPECTED_DELAY = 50;
+    private final int timeout;
+
     private Snakebot(SnakebotConfiguration configuration, GameSettings gameSettings) {
         this.name = configuration.getName();
         this.snake = configuration.getSnakeStrategy();
         this.gameSettings = gameSettings;
+        timeout = gameSettings.getTimeInMsPerTick() - EXPECTED_DELAY;
         showWelcome(this.name, configuration);
         this.communicationHandler = new SnakebotCommunicationHandler(this, configuration.getUri());
         communicationHandler.run();
@@ -141,10 +147,11 @@ public class Snakebot {
     }
 
     private void handleMapUpdate(MapUpdateEvent mapUpdateEvent) throws JsonProcessingException {
-        Future<Direction> promise = snake.getNextMove(GameState.fromMapUpdateEvent(mapUpdateEvent));
+        Future<Direction> promise = executor.submit(() ->
+                snake.getNextMove(GameState.fromMapUpdateEvent(mapUpdateEvent)));
         Direction direction = null;
         try {
-            direction = promise.get(200, TimeUnit.MILLISECONDS);
+            direction = promise.get(timeout, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } catch (ExecutionException e) {

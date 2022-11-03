@@ -12,11 +12,15 @@ import java.util.List;
 import java.util.Random;
 
 public class Slippy implements SnakeStrategy {
+
+
     private static final Logger logger = LoggerFactory.getLogger(Slippy.class);
     private static final Random random = new Random();
 
+
     /**
      * Slippy is not the slipperiest snake of the pit, but you can help him make better decisions my changing the getNextMove() function.
+     *
      * @param state The current state of the game, contains all the needed information to determine the next move
      * @return the direction of the snakes next move.
      */
@@ -27,12 +31,20 @@ public class Slippy implements SnakeStrategy {
         List<Direction> possibleMoves = Arrays.stream(Direction.values()).toList().stream().filter(snake::canMoveInDirection).toList();
 
         if (!possibleMoves.isEmpty()) {
-            int choice = random.nextInt(0,possibleMoves.size());
-            return possibleMoves.get(choice);
+            return pickRandom(possibleMoves);
         } else {
-            logger.info("Snake panics as there is no possible moves");
+            logger.info("Slippy panics as there is no possible moves");
             return Direction.DOWN;
         }
+    }
+
+    private static List<Direction> getPossibleMoves(Snake snake) {
+        return Arrays.stream(Direction.values()).toList().stream().filter(snake::canMoveInDirection).toList();
+    }
+
+    private static Direction pickRandom(List<Direction> possibleMoves) {
+        int choice = random.nextInt(0, possibleMoves.size());
+        return possibleMoves.get(choice);
     }
 
     @Override
@@ -44,9 +56,4 @@ public class Slippy implements SnakeStrategy {
         }
     }
 
-    // TODO Insert your name here !
-    @Override
-    public String getName() {
-        return "Player";
-    }
 }

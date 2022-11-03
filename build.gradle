@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.5-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
 	id 'java'
+	id 'groovy'
 }
 
 group = 'se.cygni'
@@ -20,17 +21,23 @@ repositories {
 	maven { url 'https://repo.spring.io/snapshot' }
 }
 
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework:spring-websocket:5.3.23'
 	implementation 'org.springframework:spring-messaging:5.3.23'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.4'
 	implementation 'org.json:json:20220924'
-    testImplementation 'org.spockframework:spock-core'
 
-    compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
+
+	compileOnly 'org.codehaus.groovy:groovy-all:3.0.13'
+	testImplementation 'net.datafaker:datafaker:1.6.0'
+	testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 tasks.named('test') {
